@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped,mapped_column,relationship 
-from from typing import List 
+from  typing import List 
 from  sqlalchemy_serializer import SerializerMixin 
 from app.db import db 
 
