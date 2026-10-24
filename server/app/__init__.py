@@ -1,5 +1,5 @@
 from flask import Flask,request,session 
-from flask_restfu import Api
+from flask_restful import Api
 from .config import Config 
 from .db import db,migrate,bcrypt 
 
