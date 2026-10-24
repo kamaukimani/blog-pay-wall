@@ -2,6 +2,7 @@ from flask import Flask,request,session
 from flask_restful import Api
 from .config import Config 
 from .db import db,migrate,bcrypt 
+from .models import *
 
 def create_app():
     app=Flask(__name__)
