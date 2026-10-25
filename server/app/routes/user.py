@@ -15,10 +15,14 @@ class Signup(Resource):
         username = data["username"]
         email = data.get("email")
         password = data["password"]
+        password_confirmation=date.get("password_confirmation")
+
+        if password != password_confirmation:
+            return {"error":"Passwords do not match!!!"},401
 
 
         
-        if username,email and password:
+        if username and email and password:
             
             new_user = User(username=username)
             new_user.email=email
@@ -49,7 +53,7 @@ class Login(Resource):
     def post(self):
         data=request.get_json()
 
-        username = data["username"]
+        #username = data["username"]
         email = data.get("email")
         password = data["password"]
 
