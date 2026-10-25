@@ -8,8 +8,10 @@ from flask_cors import CORS
 
 def create_app():
     app=Flask(__name__)
-    CORS(app)
+    CORS(app,origins=["http://localhost:3000","http://127.0.0.1:3000"],supports_credentials=True)
     app.config.from_object(Config)
+
+   
     app.json.compact=False 
 
     db.init_app(app)
@@ -32,6 +34,7 @@ def create_app():
     def check_if_logged_in():
         open_access_list = [
             'clear',
+            'signup',
             'article_list',
             'show_article',
             'login',
@@ -41,6 +44,7 @@ def create_app():
 
         if (request.endpoint) not in open_access_list and (not session.get('user_id')):
             return {'error': '401 Unauthorized'}, 401
+   
 
 
     return app
