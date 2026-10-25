@@ -3,10 +3,12 @@ from flask_restful import Api
 from .config import Config 
 from .db import db,migrate,bcrypt 
 from .models import *
+from .routes import *
+from flask_cors import CORS
 
 def create_app():
     app=Flask(__name__)
-
+    CORS(app)
     app.config.from_object(Config)
     app.json.compact=False 
 
