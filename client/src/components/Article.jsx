@@ -16,7 +16,9 @@ function Article({API_URL}) {
 
   useEffect(() => {
     setState(initialState);
-    fetch(`${API_URL}/articles/${id}`).then((r) => {
+    fetch(`${API_URL}/articles/${id}`,{
+      credentials: "include",
+    }).then((r) => {
       if (r.ok) {
         r.json().then((article) =>
           setState({ article, error: null, status: "resolved" })

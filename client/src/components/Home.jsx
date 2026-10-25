@@ -7,7 +7,9 @@ function Home(props) {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_URL}/articles`)
+    fetch(`${API_URL}/articles`,{
+      credentials: "include",
+    })
       .then((r) => r.json())
       .then(setArticles);
   }, []);
