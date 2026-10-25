@@ -48,7 +48,7 @@ function App() {
                 />
                 <Route
                   path="/members"
-                  element={<MemberArticles />}
+                  element={<MemberArticles API_URL={API_URL}/>}
                 />
                 <Route
                   path="/"
