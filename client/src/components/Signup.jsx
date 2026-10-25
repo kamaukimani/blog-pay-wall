@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 
-function SignUp({ setUser }) {
+function SignUp({ setUser, API_URL }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +22,7 @@ function SignUp({ setUser }) {
 
     setError("");
 
-    fetch("http://127.0.0.1:5555/signup", {
+    fetch(`${API_URL}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
