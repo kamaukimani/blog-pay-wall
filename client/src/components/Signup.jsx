@@ -27,6 +27,7 @@ function SignUp({ setUser, API_URL }) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
         username,
         email,

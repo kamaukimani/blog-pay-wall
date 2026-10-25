@@ -29,6 +29,7 @@ function NavBar({ user, setUser, API_URL }) {
         ) : (
           <>
             <Link to="/signup">Signup</Link>
+            <br/>
             <Link to="/login">Login</Link>
           </>
         )}
