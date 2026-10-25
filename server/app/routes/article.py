@@ -22,14 +22,15 @@ class IndexArticle(Resource):
 class ShowArticle(Resource):
 
     def get(self, id):
-
+       
         article = Article.query.filter(Article.id == id).first()
         article_json = article.to_dict()
-
-        if not session.get('user_id'):
-            session['page_views'] = 0 if not session.get('page_views') else session.get('page_views')
+        
+        if not session.get('user_id'):            
+            session['page_views'] = 0 if not session.get('page_views') else session.get('page_views')           
             session['page_views'] += 1
 
+            
             if session['page_views'] <= 3:
                 return article_json, 200
 
@@ -57,3 +58,5 @@ class MemberOnlyArticle(Resource):
 
         article = Article.query.filter(Article.id == id).first()
         return article.to_dict(), 200
+
+
