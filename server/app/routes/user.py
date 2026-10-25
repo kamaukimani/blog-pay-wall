@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import session,request,make_response,jsonify
 from app.models import User
 from flask_bcrypt import Bcrypt 
+from app.db import db
 
 bcrypt=Bcrypt()
 
@@ -15,7 +16,7 @@ class Signup(Resource):
         username = data["username"]
         email = data.get("email")
         password = data["password"]
-        password_confirmation=date.get("password_confirmation")
+        password_confirmation=data.get("password_confirmation")
 
         if password != password_confirmation:
             return {"error":"Passwords do not match!!!"},401
@@ -34,7 +35,7 @@ class Signup(Resource):
             
             return new_user.to_dict(), 201
 
-        return {'error': '422 Unprocessable Entity'}, 422
+        return {'error': 'Invalid email or password'}, 422
 
 class CheckSession(Resource):
 
@@ -46,7 +47,7 @@ class CheckSession(Resource):
             
             return user.to_dict(), 200
 
-        return {}, 204
+        return {"error":"Unauthorized"}, 401
 
 class Login(Resource):
 
@@ -58,6 +59,8 @@ class Login(Resource):
         password = data["password"]
 
         user = User.query.filter(User.email == email).first()
+        if not user:
+            return {"error": "Invalid email or password"},401
 
         is_hashed=bcrypt.check_password_hash(user.password,password)
 
@@ -66,7 +69,7 @@ class Login(Resource):
             session['user_id'] = user.id
             return user.to_dict(), 200
 
-        return {'error': '401 Unauthorized'}, 401
+        return {"error": "Invalid email or password"}, 401
 
 class Logout(Resource):
 
