@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-const API_URL="http://127.0.0.1:5555"
-function NavBar({ user, setUser }) {
+function NavBar({ user, setUser, API_URL }) {
   function handleLogoutClick() {
     fetch(`${API_URL}/logout`, { method: "DELETE" }).then((r) => {
       if (r.ok) {
