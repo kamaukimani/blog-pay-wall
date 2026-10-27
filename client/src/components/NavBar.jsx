@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 
 function NavBar({ user, setUser, API_URL }) {
   function handleLogoutClick() {
-    fetch(`${API_URL}/logout`, { method: "DELETE" }).then((r) => {
+    fetch(`${API_URL}/logout`, 
+      { 
+        method: "DELETE",
+        credentials: "include",
+      }).then((r) => {
       if (r.ok) {
         setUser(null);
       }
