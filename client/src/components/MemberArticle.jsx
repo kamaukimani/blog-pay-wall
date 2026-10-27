@@ -12,14 +12,20 @@ function MemberArticles({API_URL}) {
 
   useEffect(() => {
     setState(initialState);
-    fetch(`${API_URL}/members_only_articles`).then((r) => {
+    fetch(`${API_URL}/members_only_articles`,{
+      credentials: "include",
+    }).then((r) => {
       if (r.ok) {
-        r.json().then((articles) =>
+        r.json().then((articles) =>{
+          console.log(articles)
           setState({ articles, error: null, status: "resolved" })
+        }
         );
       } else {
-        r.json().then((message) =>
+        r.json().then((message) =>{
+          console.log(message)
           setState({ articles: null, error: message.error, status: "rejected" })
+        }
         );
       }
     });

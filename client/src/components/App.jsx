@@ -4,13 +4,13 @@ import Article from "./Article";
 import NavBar from "./NavBar"
 import Home from "./Home";
 import Login from "./Login";
-import MemberArticles from "./MemberArticle";
+import MemberArticles from "./MemberArticle"
 import SignUp from "./Signup"
 
 function App() {
   const [user, setUser] = useState(null);
 
-  const API_URL="http://127.0.0.1:5555"
+  const API_URL="http://localhost:5555"
 
   useEffect(() => {
     fetch(`${API_URL}/check_session`,{
@@ -34,6 +34,14 @@ function App() {
                 path="/"
                 element={<Home API_URL={API_URL} user={user}/>}
               />
+              <Route
+                  path="/members"
+                  element={<MemberArticles API_URL={API_URL} user={user}/>}
+                />
+                <Route 
+                  path="/articles/:id"
+                  element={<Article API_URL={API_URL}/>}
+                />
             </Routes>
           ):(
             <Routes>
@@ -47,7 +55,7 @@ function App() {
                 />
                 <Route 
                   path="/login"
-                  element={<Login setUser={setUser} />}
+                  element={<Login setUser={setUser} API_URL={API_URL}/>}
                 />
                 <Route
                   path="/members"

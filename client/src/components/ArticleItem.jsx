@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { makeEmojiList } from "../utils";
 
 function ArticleItem({ article }) {
-  const { id, title, date, preview, minutes_to_read } = article;
+  const { id, title, created_at:date, preview, minutes_to_read } = article;
 
   const emojis = makeEmojiList(minutes_to_read);
 
