@@ -67,7 +67,7 @@ class Login(Resource):
         if is_hashed:
 
             session['user_id'] = user.id
-            return user.to_dict(), 200
+            return user.to_dict(rules=("-password",)), 200
 
         return {"error": "Invalid email or password"}, 401
 
