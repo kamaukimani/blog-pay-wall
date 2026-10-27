@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import session,request,make_response,jsonify
-from app.models import Article
+from app.models import Article,User
 
 
 
@@ -48,8 +48,10 @@ class ShowArticle(Resource):
 class MemberOnlyIndex(Resource):
     
     def get(self):
+
     
         articles = Article.query.filter(Article.is_member_only == True).all()
+        
         return [article.to_dict() for article in articles], 200
 
 class MemberOnlyArticle(Resource):
